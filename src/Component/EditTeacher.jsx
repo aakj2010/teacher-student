@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useFormik } from "formik";
-import axios from "axios";
+import axios from 'axios';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 
-function CreateTeachers() {
+function EditTeacher() {
+
+    const params = useParams()
     const navigate = useNavigate()
+
     const formik = useFormik({
         initialValues: {
             name: "",
@@ -32,13 +35,31 @@ function CreateTeachers() {
             return errors;
         },
         onSubmit: async (values) => {
-            let Teacher = await axios.post("https://62fe35d041165d66bfbb1342.mockapi.io/Teachers", values);
-            alert("Teacher Created")
+            await axios.put(`https://62fe35d041165d66bfbb1342.mockapi.io/Teachers/${params.id}`, values);
+            alert("Teacher Edited")
             navigate("/Teachers")
         }
     });
-    return (
 
+    useEffect(() => {
+        loadTeacher()
+    }, [])
+
+    let loadTeacher = async () => {
+        try {
+            let teacher = await axios.get(`https://62fe35d041165d66bfbb1342.mockapi.io/Teachers/${params.id}`)
+            formik.setValues({
+                name: teacher.data.name,
+                gender: teacher.data.gender,
+                number: teacher.data.phone,
+                email: teacher.data.email
+            })
+        } catch (error) {
+
+        }
+    }
+
+    return (
         <div className="container">
             <h2 className="text-center">Create Teacher</h2>
             <form onSubmit={formik.handleSubmit}>
@@ -79,9 +100,12 @@ function CreateTeachers() {
                             name="email" />
                         <span style={{ color: 'red' }}>{formik.errors.email}</span>
                     </div>
-                    
+
                     <div className="col-lg-6">
-                        <input className="btn btn-primary mt-2" type={"submit"} value="Submit" />
+                        <input className="btn btn-primary mt-2"
+                            type={"submit"}
+                            value="Submit"
+                            disabled={!formik.isValid} />
                     </div>
                 </div>
             </form>
@@ -89,4 +113,4 @@ function CreateTeachers() {
     )
 }
 
-export default CreateTeachers
+export default EditTeacher

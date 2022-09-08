@@ -55,7 +55,7 @@ function Teacher() {
                                         <th>S.No</th>
                                         <th>Name</th>
                                         <th>Gender</th>
-                                        <th>Number</th>
+                                        <th>Phone Number</th>
                                         <th>Email</th>
                                         <th>Actions</th>
                                     </tr>
@@ -65,7 +65,7 @@ function Teacher() {
                                         <th>S.No</th>
                                         <th>Name</th>
                                         <th>Gender</th>
-                                        <th>Number</th>
+                                        <th>Phone Number</th>
                                         <th>Email</th>
                                         <th>Actions</th>
                                     </tr>
@@ -80,8 +80,8 @@ function Teacher() {
                                                 <td>{Teacher.phone}</td>
                                                 <td>{Teacher.email}</td>
                                                 <td>
-                                                    <Link to={`/portal/Teachers/${Teacher.id}`} className="btn btn-sm btn-primary mr-2">View</Link>
-                                                    <Link to={`/portal/Teachers/edit/${Teacher.id}`} className="btn btn-sm btn-warning mr-2">Edit</Link>
+                                                    <Link to={`/Teachers/${Teacher.id}`} className="btn btn-sm btn-primary mr-2">View</Link>
+                                                    <Link to={`/Teachers/edit/${Teacher.id}`} className="btn btn-sm btn-warning mr-2">Edit</Link>
                                                     <button onClick={() => teachersDelete(Teacher.id)} className="btn btn-sm btn-danger mr-2">Delete</button>
                                                 </td>
                                             </tr>

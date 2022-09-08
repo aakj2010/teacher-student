@@ -85,8 +85,8 @@ function Students() {
                                                 <td>{students.gender}</td>
                                                 <td>{students.Course}</td>
                                                 <td>
-                                                    <Link to={`/portal/products/${students.id}`} className="btn btn-sm btn-primary mr-2">View</Link>
-                                                    <Link to={`/portal/products/edit/${students.id}`} className="btn btn-sm btn-warning mr-2">Edit</Link>
+                                                    <Link to={`/students/${students.id}`} className="btn btn-sm btn-primary mr-2">View</Link>
+                                                    <Link to={`/students/edit/${students.id}`} className="btn btn-sm btn-warning mr-2">Edit</Link>
                                                     <button onClick={() => studentDelete(students.id)} className="btn btn-sm btn-danger mr-2">Delete</button>
                                                 </td>
                                             </tr>

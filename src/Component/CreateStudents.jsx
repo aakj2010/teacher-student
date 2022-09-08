@@ -1,16 +1,17 @@
 import React from 'react'
 import { useFormik } from "formik";
 import axios from "axios";
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 
 function CreateStudents() {
-
+  const navigate = useNavigate()
   const formik = useFormik({
     initialValues: {
       name: "",
       Age: "",
       gender: "",
       Course: ""
-    
+
     },
     validate: (values) => {
       let errors = {};
@@ -33,8 +34,9 @@ function CreateStudents() {
       return errors;
     },
     onSubmit: async (values) => {
-      let Teacher = await axios.post("https://62fe35d041165d66bfbb1342.mockapi.io/students", values);
-      alert("Teacher Created")
+      let Student = await axios.post("https://62fe35d041165d66bfbb1342.mockapi.io/students", values);
+      alert("Student Created")
+      navigate("/students")
     }
   });
 
@@ -79,8 +81,8 @@ function CreateStudents() {
               type={"text"}
               value={formik.values.Course}
               onChange={formik.handleChange}
-              name="course" />
-            <span style={{ color: 'red' }}>{formik.errors.course}</span>
+              name="Course" />
+            <span style={{ color: 'red' }}>{formik.errors.Course}</span>
           </div>
 
           <div className="col-lg-6">

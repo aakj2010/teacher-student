@@ -8,6 +8,10 @@ import Teacher from "./Component/Teacher";
 import Students from './Component/Students';
 import CreateTeachers from './Component/CreateTeachers';
 import CreateStudents from './Component/CreateStudents';
+import StudentView from './Component/StudentView';
+import TeacherView from './Component/TeacherView';
+import EditTeacher from './Component/EditTeacher';
+import EditStudent from './Component/EditStudent';
 
 function App() {
   return (
@@ -16,13 +20,17 @@ function App() {
           <Routes>
             <Route path="/" element={<Portal />}>
               {/* Teacher */}
-              <Route path='teachers' element={<Teacher />} />
+              <Route path='Teachers' element={<Teacher />} />
               <Route path='create-Teachers' element={<CreateTeachers />} />
+              <Route path='Teachers/:id' element={<TeacherView />} />
+              <Route path='Teachers/edit/:id' element={<EditTeacher />} />
               
               
               {/* Student */}
               <Route path='students' element={<Students />} />
               <Route path='create-students' element={<CreateStudents />} />
+              <Route path='students/:id' element={<StudentView />} />
+              <Route path='students/edit/:id' element={<EditStudent />} />
             </Route>
           </Routes>
 

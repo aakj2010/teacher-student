@@ -14,15 +14,15 @@ function SideBar() {
             </a>
 
             {/* <!-- Divider --> */}
-            <hr class="sidebar-divider my-0" />
-            <hr class="sidebar-divider my-0" />
+            <hr class="sidebar-divider my-1" />
+            
 
             <br /><br /><br />
             <li class="nav-item active">
-                <Link class="nav-link" to="/teachers">
+                <Link class="nav-link" to="/Teachers">
                     <FontAwesomeIcon icon={faUsers} />
                     <span> Teachers</span></Link>
-            </li><br />
+            </li>
 
             <hr class="sidebar-divider" />
 
