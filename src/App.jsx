@@ -3,6 +3,7 @@ import './css/sb-admin-2.css';
 import { BrowserRouter, Routes, Route, } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css"
 import './App.css';
+import { AssignMentorProvider } from './Component/AssignTeacherContext';
 import Portal from "./Component/Portal";
 import Teacher from "./Component/Teacher";
 import Students from './Component/Students';
@@ -12,11 +13,15 @@ import StudentView from './Component/StudentView';
 import TeacherView from './Component/TeacherView';
 import EditTeacher from './Component/EditTeacher';
 import EditStudent from './Component/EditStudent';
+import AssignTeachertoStudents from './Component/AssignTeachertoStudents';
+import AssignOrChangeMentor from './Component/AssignOrChangeTeacher';
+
 
 function App() {
   return (
     <>
       <BrowserRouter>
+      <AssignMentorProvider>
           <Routes>
             <Route path="/" element={<Portal />}>
               {/* Teacher */}
@@ -24,6 +29,10 @@ function App() {
               <Route path='create-Teachers' element={<CreateTeachers />} />
               <Route path='Teachers/:id' element={<TeacherView />} />
               <Route path='Teachers/edit/:id' element={<EditTeacher />} />
+
+
+              <Route path='ats' element={<AssignTeachertoStudents />} />
+              <Route path='act' element={<AssignOrChangeMentor />} />
               
               
               {/* Student */}
@@ -33,6 +42,7 @@ function App() {
               <Route path='students/edit/:id' element={<EditStudent />} />
             </Route>
           </Routes>
+          </AssignMentorProvider>
 
       </BrowserRouter>
     </>

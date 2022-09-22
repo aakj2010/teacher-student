@@ -9,8 +9,7 @@ function CreateStudents() {
     initialValues: {
       name: "",
       Age: "",
-      gender: "",
-      Course: ""
+      batch: ""
 
     },
     validate: (values) => {
@@ -24,17 +23,14 @@ function CreateStudents() {
         errors.Age = "Please Enter Age";
       }
 
-      if (values.gender === "") {
-        errors.gender = "Please Enter Gender";
-      }
-      if (values.Course === "") {
-        errors.Course = "Please Enter Course";
+      if (values.batch === "") {
+        errors.batch = "Please Enter Course";
       }
 
       return errors;
     },
     onSubmit: async (values) => {
-      let Student = await axios.post("https://62fe35d041165d66bfbb1342.mockapi.io/students", values);
+      let Student = await axios.post("https://62fe35d041165d66bfbb1342.mockapi.io/student", values);
       alert("Student Created")
       navigate("/students")
     }
@@ -44,7 +40,6 @@ function CreateStudents() {
     <div className="container">
       <h2 className="text-center">Create Students</h2>
       <form onSubmit={formik.handleSubmit}>
-        <div className="row">
           <div className="col-lg-6">
             <label>Name</label>
             <input className={`form-control ${formik.errors.name ? `input-error` : ``}`}
@@ -66,29 +61,18 @@ function CreateStudents() {
           </div>
 
           <div className="col-lg-6">
-            <label>Gender</label>
-            <input className={`form-control ${formik.errors.gender ? `input-error` : ``}`}
-              type={"text"}
-              value={formik.values.gender}
-              onChange={formik.handleChange}
-              name="gender" />
-            <span style={{ color: 'red' }}>{formik.errors.gender}</span>
-          </div>
-
-          <div className="col-lg-6">
-            <label>Course</label>
+            <label>Batch</label>
             <input className={`form-control ${formik.errors.Course ? `input-error` : ``}`}
               type={"text"}
               value={formik.values.Course}
               onChange={formik.handleChange}
-              name="Course" />
+              name="batch" />
             <span style={{ color: 'red' }}>{formik.errors.Course}</span>
           </div>
 
           <div className="col-lg-6">
             <input className="btn btn-primary mt-2" type={"submit"} value="Submit" />
           </div>
-        </div>
       </form>
     </div>
   )

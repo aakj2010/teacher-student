@@ -1,33 +1,39 @@
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useContext } from "react";
+import AssignMentorContext from "./AssignTeacherContext";
 
 
 
 function Students() {
 
 
-    const [students, setStudents] = useState([]);
+    // const [students, setStudents] = useState([]);
+    const [students, setStudents] = useContext(AssignMentorContext)
+    // let context = useContext(AssignMentorContext)
+    // let students = context.students
+    console.log(students)
     const [isLoading, setLoading] = useState(false)
 
-    useEffect(() => {
-        loadData()
-    }, [])
+    // useEffect(() => {
+    //     loadData()
+    // }, [])
 
-    let loadData = async () => {
-        setLoading(true)
-        let students = await axios.get("https://62fe35d041165d66bfbb1342.mockapi.io/students");
-        console.log(students);
-        setStudents(students.data)
-        setLoading(false)
-    };
+    // let loadData = async () => {
+    //     setLoading(true)
+    //     let students = await axios.get("https://62fe35d041165d66bfbb1342.mockapi.io/student");
+    //     console.log(students);
+    //     setStudents(students.data)
+    //     setLoading(false)
+    // };
 
     let studentDelete = async (id) => {
         try {
             let ask = window.confirm("Are you Sure? Do you want to delete this Data?");
             if (ask) {
                 await axios.delete(`https://62fe35d041165d66bfbb1342.mockapi.io/students/${id}`)
-                loadData()
+                // loadData()
             }
 
         } catch (error) {
@@ -58,20 +64,20 @@ function Students() {
                                 <thead>
                                     <tr>
                                         <th>S.No</th>
+                                        <th>Id</th>
                                         <th>Name</th>
                                         <th>Age</th>
-                                        <th>Gender</th>
-                                        <th>Course</th>
+                                        <th>Batch</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tfoot>
                                     <tr>
                                         <th>S.No</th>
+                                        <th>Id</th>
                                         <th>Name</th>
                                         <th>Age</th>
-                                        <th>Gender</th>
-                                        <th>Course</th>
+                                        <th>Batch</th>
                                         <th>Actions</th>
                                     </tr>
                                 </tfoot>
@@ -80,10 +86,10 @@ function Students() {
                                         students.map((students, index) => {
                                             return <tr>
                                                 <td>{index + 1}</td>
+                                                <td>{students.id}</td>
                                                 <td>{students.name}</td>
                                                 <td>{students.Age}</td>
-                                                <td>{students.gender}</td>
-                                                <td>{students.Course}</td>
+                                                <td>{students.batch}</td>
                                                 <td>
                                                     <Link to={`/students/${students.id}`} className="btn btn-sm btn-primary mr-2">View</Link>
                                                     <Link to={`/students/edit/${students.id}`} className="btn btn-sm btn-warning mr-2">Edit</Link>

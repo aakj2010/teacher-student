@@ -1,29 +1,21 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState, useContext} from "react";
+import AssignMentorContext from './AssignTeacherContext'
 
 function Teacher() {
-    const [Teachers, setTeachers] = useState([]);
+
+    const navigate = useNavigate
+    let [teachers, setTeachers]= useContext(AssignMentorContext)
     const [isLoading, setLoading] = useState(false)
 
-    useEffect(() => {
-        loadData()
-    }, [])
-
-    let loadData = async () => {
-        setLoading(true)
-        let Teachers = await axios.get("https://62fe35d041165d66bfbb1342.mockapi.io/Teachers");
-        console.log(Teachers);
-        setTeachers(Teachers.data)
-        setLoading(false)
-    };
 
     let teachersDelete = async (id) => {
         try {
             let ask = window.confirm("Are you Sure? Do you want to delete this Data?");
             if (ask) {
                 await axios.delete(`https://62fe35d041165d66bfbb1342.mockapi.io/Teachers/${id}`)
-                loadData()
+                navigate("/Teachers")
             }
 
         } catch (error) {
@@ -47,38 +39,42 @@ function Teacher() {
                         <div class="spinner-border" role="status">
                             {/* <span class="visually-hidden">Loading...</span> */}
                         </div>
-                    </div>) : <div class="card-body">
+                    </div>) : 
+                    <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
                                         <th>S.No</th>
+                                        <th>Id</th>
                                         <th>Name</th>
-                                        <th>Gender</th>
                                         <th>Phone Number</th>
                                         <th>Email</th>
+                                        <th>Course</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tfoot>
                                     <tr>
                                         <th>S.No</th>
+                                        <th>Id</th>
                                         <th>Name</th>
-                                        <th>Gender</th>
                                         <th>Phone Number</th>
                                         <th>Email</th>
+                                        <th>Course</th>
                                         <th>Actions</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
                                     {
-                                        Teachers.map((Teacher, index) => {
+                                        teachers.map((Teacher, index) => {
                                             return <tr>
                                                 <td>{index + 1}</td>
+                                                <td>{Teacher.id}</td>
                                                 <td>{Teacher.name}</td>
-                                                <td>{Teacher.gender}</td>
-                                                <td>{Teacher.phone}</td>
+                                                <td>{Teacher.number}</td>
                                                 <td>{Teacher.email}</td>
+                                                <td>{Teacher.course}</td>
                                                 <td>
                                                     <Link to={`/Teachers/${Teacher.id}`} className="btn btn-sm btn-primary mr-2">View</Link>
                                                     <Link to={`/Teachers/edit/${Teacher.id}`} className="btn btn-sm btn-warning mr-2">Edit</Link>
