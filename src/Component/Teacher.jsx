@@ -1,12 +1,16 @@
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState, useContext} from "react";
-import AssignMentorContext from './AssignTeacherContext'
+import {AssignMentorContext} from './AssignMentorContext'
 
 function Teacher() {
 
     const navigate = useNavigate
-    let [teachers, setTeachers]= useContext(AssignMentorContext)
+    let context = useContext(AssignMentorContext)
+    let teachers = context.teachers;
+    console.log(teachers)
+
+
     const [isLoading, setLoading] = useState(false)
 
 
@@ -39,7 +43,13 @@ function Teacher() {
                         <div class="spinner-border" role="status">
                             {/* <span class="visually-hidden">Loading...</span> */}
                         </div>
-                    </div>) : 
+                    </div>)
+                    // teachers.length === 0 ?(<div class="text-center">
+                    //     <tr>
+                    //         <td>No Data Found</td>
+                    //     </tr>
+                    // </div>)
+                     : 
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">

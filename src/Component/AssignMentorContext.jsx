@@ -1,17 +1,14 @@
 import { useState, useEffect, createContext } from "react";
 import axios from "axios";
 
-let AssignMentorContext = createContext()
-
-
-
+export const AssignMentorContext = createContext()
 
 
 export const AssignMentorProvider = ({ children }) => {
 
     const [teachers, setTeachers] = useState([]);
     const [students, setStudents] = useState([]);
-    
+
     const BaseURL = `https://62fe35d041165d66bfbb1342.mockapi.io`;
 
     const fetchData = async () => {
@@ -25,17 +22,17 @@ export const AssignMentorProvider = ({ children }) => {
     };
     useEffect(() => {
         fetchData();
-        // return () => {
-        //     <></>;
-        // };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
         <>
-            {/* {console.log(teachers, students)} */}
             <AssignMentorContext.Provider
-                value={[teachers, setTeachers, students, setStudents]}
+                value={{
+                    teachers: teachers,
+                    setTeachers: setTeachers,
+                    students: students,
+                    setStudents: setStudents
+                }}
             >
                 {children}
             </AssignMentorContext.Provider>

@@ -1,17 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useEffect, useState, useContext } from "react";
-import AssignMentorContext from "./AssignTeacherContext";
+import { useEffect, useState, useContext,  } from "react";
+import {AssignMentorContext} from "./AssignMentorContext";
 
 
 
 function Students() {
-
-
-    // const [students, setStudents] = useState([]);
-    const [students, setStudents] = useContext(AssignMentorContext)
-    // let context = useContext(AssignMentorContext)
-    // let students = context.students
+    const navigate = useNavigate
+    let context = useContext(AssignMentorContext)
+    let students = context.students;
     console.log(students)
     const [isLoading, setLoading] = useState(false)
 
@@ -32,6 +29,7 @@ function Students() {
             let ask = window.confirm("Are you Sure? Do you want to delete this Data?");
             if (ask) {
                 await axios.delete(`https://62fe35d041165d66bfbb1342.mockapi.io/students/${id}`)
+                navigate("/students")
                 // loadData()
             }
 

@@ -22,8 +22,8 @@ function EditTeacher() {
             if (values.name === "") {
                 errors.name = "Please Enter Name";
             }
-            if (values.gender === "") {
-                errors.gender = "Please Enter Gender";
+            if (values.course === "") {
+                errors.course = "Please Enter Course";
             }
             if (values.number === "") {
                 errors.number = "Please Enter Phone Number";
@@ -74,13 +74,13 @@ function EditTeacher() {
                         <span style={{ color: 'red' }}>{formik.errors.name}</span>
                     </div>
                     <div className="col-lg-6">
-                        <label>Gender</label>
-                        <input className={`form-control ${formik.errors.gender ? `input-error` : ``}`}
+                        <label>Course</label>
+                        <input className={`form-control ${formik.errors.course ? `input-error` : ``}`}
                             type={"text"}
-                            value={formik.values.gender}
+                            value={formik.values.course}
                             onChange={formik.handleChange}
-                            name="gender" />
-                        <span style={{ color: 'red' }}>{formik.errors.gender}</span>
+                            name="course" />
+                        <span style={{ color: 'red' }}>{formik.errors.course}</span>
                     </div>
                     <div className="col-lg-6">
                         <label>Phone Number</label>

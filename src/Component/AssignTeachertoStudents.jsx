@@ -1,6 +1,6 @@
 import React from 'react'
 import { useContext } from "react";
-import AssignMentorContext from './AssignTeacherContext'
+import AssignMentorContext from './AssignMentorContext'
 
 function AssignTeachertoStudents() {
     const [students, setStudents, teachers, setTeachers] = useContext(AssignMentorContext)

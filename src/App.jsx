@@ -3,7 +3,7 @@ import './css/sb-admin-2.css';
 import { BrowserRouter, Routes, Route, } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css"
 import './App.css';
-import { AssignMentorProvider } from './Component/AssignTeacherContext';
+import { AssignMentorProvider } from './Component/AssignMentorContext';
 import Portal from "./Component/Portal";
 import Teacher from "./Component/Teacher";
 import Students from './Component/Students';
