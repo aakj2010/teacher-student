@@ -6,30 +6,34 @@ export const AssignMentorContext = createContext()
 
 export const AssignMentorProvider = ({ children }) => {
 
-    const [teachers, setTeachers] = useState([]);
+    const [mentors, setMentors] = useState([]);
     const [students, setStudents] = useState([]);
 
-    const BaseURL = `https://62fe35d041165d66bfbb1342.mockapi.io`;
+    const BaseURL = `https://assignmentorstudents.herokuapp.com/`;
 
     const fetchData = async () => {
-        let Teachers = await axios.get(`${BaseURL}/Teachers`);
-        setTeachers(Teachers.data)
+        let Mentors = await axios.get(`${BaseURL}/Mentors`);
+        setMentors(Mentors.data)
 
-        let Students = await axios.get(`${BaseURL}/student`);
+        let Students = await axios.get(`${BaseURL}/Student`);
         setStudents(Students.data)
         console.log(Students.data)
 
     };
     useEffect(() => {
         fetchData();
+
+        return () => {
+            <></>;
+        };
     }, []);
 
     return (
         <>
             <AssignMentorContext.Provider
                 value={{
-                    teachers: teachers,
-                    setTeachers: setTeachers,
+                    mentors: mentors,
+                    setMentors: setMentors,
                     students: students,
                     setStudents: setStudents
                 }}

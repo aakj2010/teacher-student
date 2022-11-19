@@ -1,51 +1,44 @@
-// import './App.css';
-import './css/sb-admin-2.css';
-import { BrowserRouter, Routes, Route, } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css"
-import './App.css';
-import { AssignMentorProvider } from './Component/AssignMentorContext';
-import Portal from "./Component/Portal";
-import Teacher from "./Component/Teacher";
-import Students from './Component/Students';
-import CreateTeachers from './Component/CreateTeachers';
-import CreateStudents from './Component/CreateStudents';
-import StudentView from './Component/StudentView';
-import TeacherView from './Component/TeacherView';
-import EditTeacher from './Component/EditTeacher';
-import EditStudent from './Component/EditStudent';
-import AssignTeachertoStudents from './Component/AssignTeachertoStudents';
-import AssignOrChangeMentor from './Component/AssignOrChangeTeacher';
+import "./App.css";
+import AssignorChangeMentor from "./Component/AssignOrChangeMentor";
+import AssignStudentsToMentor from "./Component/AssignStudentsToMentor";
+import MentorForm from "./Component/MentorForm";
+import MentorTable from "./Component/MentorTable";
+import ShowMentorStudents from "./Component/ShowMentorStudents";
+import StudentForm from "./Component/StudentForm";
+import StudentTable from "./Component/StudentTable";
+import { AssignMentorProvider } from "./context/AssignMentorContext";
+
 
 
 function App() {
   return (
     <>
-      <BrowserRouter>
-      <AssignMentorProvider>
-          <Routes>
-            <Route path="/" element={<Portal />}>
-              {/* Teacher */}
-              <Route path='Teachers' element={<Teacher />} />
-              <Route path='create-Teachers' element={<CreateTeachers />} />
-              <Route path='Teachers/:id' element={<TeacherView />} />
-              <Route path='Teachers/edit/:id' element={<EditTeacher />} />
 
+      <div className="container">
+        <h2
+          style={{ textAlign: "center", color: "black", marginBottom: "2rem" }}
+        >
+          Zen Mentors
+        </h2>
+        <AssignMentorProvider>
+          <div className="row">
+            <div className="col-md-5 col-sm-12">
+              <MentorForm />
+              <StudentForm />
+              <AssignorChangeMentor />
+              <AssignStudentsToMentor />
+              <ShowMentorStudents />
+            </div>
+            <div className="col-md-7 col-sm-12">
+              <MentorTable />
+              <StudentTable />
+            </div>
+          </div>
+        </AssignMentorProvider>
+      </div>
 
-              <Route path='ats' element={<AssignTeachertoStudents />} />
-              <Route path='act' element={<AssignOrChangeMentor />} />
-              
-              
-              {/* Student */}
-              <Route path='students' element={<Students />} />
-              <Route path='create-students' element={<CreateStudents />} />
-              <Route path='students/:id' element={<StudentView />} />
-              <Route path='students/edit/:id' element={<EditStudent />} />
-            </Route>
-          </Routes>
-          </AssignMentorProvider>
-
-      </BrowserRouter>
     </>
+
   );
 }
 
